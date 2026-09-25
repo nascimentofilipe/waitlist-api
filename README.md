@@ -12,7 +12,7 @@ Each priority level has a maximum waiting time, so the system must make sure no 
 
 - **Current**
     - Java 21
-    - Spring Boot 3
+    - Spring Boot 4
     - Maven
 - **Planned**
     - PostgreSQL and Flyway
