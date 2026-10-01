@@ -1,7 +1,7 @@
 package com.filipenascimento.waitlist_api.domain;
 
 public record SigtapCode(String value) {
-    private static final String SIGTAPCODE_PATTERN = "^04";
+    private static final String SIGTAPCODE_PATTERN = "^04\\d{8}";
 
     public SigtapCode {
         if (value == null || value.isBlank()) {
@@ -10,12 +10,8 @@ public record SigtapCode(String value) {
 
         value = value.replaceAll("\\D", "");
 
-        if (value.length() != 10) {
-            throw new IllegalArgumentException("SigtapCode value length should be 10 characters");
-        }
-
         if (!value.matches(SIGTAPCODE_PATTERN)) {
-            throw new IllegalArgumentException("SigtapCode value does not match expected pattern " + SIGTAPCODE_PATTERN);
+            throw new IllegalArgumentException("SIGTAP code must belong to group 04 (surgical procedures)");
         }
     }
 }

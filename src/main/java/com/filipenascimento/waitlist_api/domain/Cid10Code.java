@@ -5,7 +5,7 @@ public record Cid10Code(String value) {
 
     public Cid10Code {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("CID10 code is required");
+            throw new IllegalArgumentException("CID-10 code is required");
         }
 
         value = value.strip().toUpperCase();
