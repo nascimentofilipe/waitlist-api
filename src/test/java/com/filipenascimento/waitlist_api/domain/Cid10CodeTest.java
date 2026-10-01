@@ -27,7 +27,7 @@ public class Cid10CodeTest {
 
 
     @Test
-    void shouldRemoveWhiteSpaces() {
+    void shouldNormalizeWhitespaceAndCase() {
         Cid10Code cid10Code = new Cid10Code(" k80.2 ");
         assertThat(cid10Code.value()).isEqualTo("K80.2");
     }
