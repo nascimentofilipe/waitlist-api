@@ -22,13 +22,13 @@ public enum RequestStatus {
     }
 
     public boolean canTransitionTo(RequestStatus target) {
-        if (target == CANCELED && !isFinal()) {
+        if (!isFinal() && target == CANCELED) {
             return false;
         }
 
         return switch (this) {
-            case REQUESTED -> target == IN_TRIAGE || target ==  RETURNED;
-            case IN_TRIAGE -> target == REGULATED || target ==  RETURNED;
+            case REQUESTED -> target == IN_TRIAGE || target == RETURNED;
+            case IN_TRIAGE -> target == REGULATED || target == RETURNED;
             case REGULATED -> target == AUTHORIZED;
             case AUTHORIZED -> target == SCHEDULED;
             case SCHEDULED -> target == PERFORMED;
