@@ -20,4 +20,20 @@ public enum RequestStatus {
     public boolean isFinal() {
         return isFinal;
     }
+
+    public boolean canTransitionTo(RequestStatus target) {
+        if (target == CANCELED && !isFinal()) {
+            return false;
+        }
+
+        return switch (this) {
+            case REQUESTED -> target == IN_TRIAGE || target ==  RETURNED;
+            case IN_TRIAGE -> target == REGULATED || target ==  RETURNED;
+            case REGULATED -> target == AUTHORIZED;
+            case AUTHORIZED -> target == SCHEDULED;
+            case SCHEDULED -> target == PERFORMED;
+            case RETURNED -> target == REQUESTED;
+            case PERFORMED, CANCELED -> false;
+        };
+    }
 }
