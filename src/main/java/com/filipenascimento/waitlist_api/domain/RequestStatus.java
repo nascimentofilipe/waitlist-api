@@ -23,7 +23,7 @@ public enum RequestStatus {
 
     public boolean canTransitionTo(RequestStatus target) {
         if (!isFinal() && target == CANCELED) {
-            return false;
+            return true;
         }
 
         return switch (this) {
