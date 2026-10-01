@@ -11,7 +11,7 @@ public record Cid10Code(String value) {
         value = value.strip().toUpperCase();
 
         if (!value.matches(CID10_PATTERN)) {
-            throw new IllegalArgumentException("Invalid CID-10 code format");
+                throw new IllegalArgumentException("Invalid CID-10 code format");
         }
     }
 }
