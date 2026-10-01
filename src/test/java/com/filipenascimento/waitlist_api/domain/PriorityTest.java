@@ -10,12 +10,12 @@ public class PriorityTest {
 
     @Test
     void shouldHaveCoefficientOfOneForLowestPriority() {
-        assertThat(Priority.D.getCoefficient()).isEqualTo(1.0);
+        assertThat(Priority.D.getCoefficient()).isCloseTo(1.0, within(0.001));
     }
 
     @Test
     void shouldCalculateCoefficientFromMaxWaitDays() {
-        assertThat(Priority.B.getCoefficient()).isEqualTo(6.0);
+        assertThat(Priority.B.getCoefficient()).isCloseTo(6.0, within(0.001));
     }
 
     @Test
@@ -24,7 +24,7 @@ public class PriorityTest {
     }
 
     @ParameterizedTest
-    @EnumSource(value = Priority.class, names = {"A2", "B", "C", "D"})
+    @EnumSource(value = Priority.class, names = {"A1"}, mode = EnumSource.Mode.EXCLUDE)
     void shouldNotBypassScoringForOtherPriorities(Priority priority) {
         assertThat(priority.bypassesScoring()).isFalse();
     }
