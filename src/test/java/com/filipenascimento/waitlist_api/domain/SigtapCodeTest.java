@@ -15,7 +15,7 @@ public class SigtapCodeTest {
     void souldRejectMissingSigtapCode(String value) {
         assertThatThrownBy(() -> new SigtapCode(value))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("SigtapCode is required");
+                .hasMessage("SIGTAP code is required");
     }
 
     @Test
@@ -31,8 +31,8 @@ public class SigtapCodeTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0201010010", "19201010010"})
-    void shouldRejectInvalidGroup(String value) {
+    @ValueSource(strings = {"0201010010", "1920101001"})
+    void shouldRejectCodeOutsideSurgicalGroup(String value) {
         assertThatThrownBy(() -> new SigtapCode(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("SIGTAP code must belong to group 04 (surgical procedures)");
@@ -40,10 +40,10 @@ public class SigtapCodeTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0407", "040703003412"})
-    void shouldRejectInvalidLength(String value) {
+    void shouldRejectCodeWithWrongLength(String value) {
     assertThatThrownBy(() -> new SigtapCode(value))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("SIGTAP code must belong to group 04 (surgical procedures)");
+            .hasMessage("SIGTAP code must have 10 digits");
     }
 
 }
