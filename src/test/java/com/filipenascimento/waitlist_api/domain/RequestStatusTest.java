@@ -1,25 +1,23 @@
 package com.filipenascimento.waitlist_api.domain;
 
-import org.apache.coyote.Request;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RequestStatusTest {
 
 
     @ParameterizedTest
     @EnumSource(value = RequestStatus.class, names = {"PERFORMED", "CANCELED"})
-    void shouldBeFinalOnlyForPerformedAndCanceled(RequestStatus requestStatus) {
-        assertThat(requestStatus.isFinal()).isTrue();
+    void shouldBeFinalForPerformedAndCanceled(RequestStatus status) {
+        assertThat(status.isFinal()).isTrue();
     }
 
     @ParameterizedTest
     @EnumSource(value = RequestStatus.class, names = {"PERFORMED", "CANCELED"}, mode = EnumSource.Mode.EXCLUDE)
-    void shouldNotBeFinalStatuses(RequestStatus status) {
+    void shouldNotBeFinalForOtherStatuses(RequestStatus status) {
         assertThat(status.isFinal()).isFalse();
     }
 
