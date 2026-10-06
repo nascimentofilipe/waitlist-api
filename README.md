@@ -55,10 +55,11 @@ The application starts at `http://localhost:8080`.
 ### Phase 1 — Foundation
 
 - [x] Project setup (Java 21, Spring Boot, Maven)
-- [ ] Domain model (patients, procedures, priority levels, status)
+- [x] Value objects and enums (CID-10, SIGTAP, CNS, SWALIS priority, request status)
+- [ ] Entities (patient, request) with business rules
 - [ ] Containerization with Docker
 - [ ] PostgreSQL with Flyway migrations, running via Docker Compose
-- [ ] Unit tests with JUnit 5 and Mockito
+- [x] Unit tests with JUnit 5 and AssertJ
 - [ ] Integration tests with Testcontainers
 - [ ] CI pipeline with GitHub Actions
 
@@ -76,3 +77,7 @@ The application starts at `http://localhost:8080`.
 - [ ] Caching with Redis, with before/after latency measurements
 - [ ] Architecture diagram and documented trade-offs
 - [ ] AI-powered waitlist summary with Spring AI (optional)
+
+## Architecture Decisions
+
+- [ADR 001: Queue ordering](docs/adr/001-queue-ordering.md)
