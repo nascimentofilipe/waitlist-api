@@ -41,7 +41,7 @@ public record Cns(String value) {
 
     @Override
     public String toString() {
-        return "Cns[" + "*"
-                .repeat(CNS_LENGTH - VISIBLE_DIGITS) + value.substring(CNS_LENGTH - VISIBLE_DIGITS) + "]";
+        int hiddenDigits = CNS_LENGTH - VISIBLE_DIGITS;
+        return "Cns[" + "*".repeat(hiddenDigits) + value.substring(hiddenDigits) + "]";
     }
 }
