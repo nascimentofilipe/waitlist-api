@@ -58,4 +58,13 @@ public class CnsTest {
     void shouldAcceptValidCns(String value) {
         assertThatNoException().isThrownBy(() -> new Cns(value));
     }
+
+    @Test
+    void shouldMaskCnsInToString() {
+        String text = new Cns("709960308246284").toString();
+
+        assertThat(text)
+                .isEqualTo("Cns[***********6284]")
+                .doesNotContain("709960308246284");
+    }
 }

@@ -2,6 +2,7 @@ package com.filipenascimento.waitlist_api.domain;
 
 public record Cns(String value) {
 
+    private static final int VISIBLE_DIGITS = 4;
     private static final int CNS_LENGTH = 15;
     private static final String FIFTEEN_DIGITS_PATTERN = "\\d{15}";
     private static final String VALID_FIRST_DIGIT_PATTERN = "[12789]\\d{14}";
@@ -36,5 +37,11 @@ public record Cns(String value) {
         }
 
         return sum % 11 == 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Cns[" + "*"
+                .repeat(CNS_LENGTH - VISIBLE_DIGITS) + value.substring(CNS_LENGTH - VISIBLE_DIGITS) + "]";
     }
 }
