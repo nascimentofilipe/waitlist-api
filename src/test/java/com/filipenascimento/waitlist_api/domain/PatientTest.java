@@ -41,15 +41,13 @@ public class PatientTest {
     void shouldRejectMissingCns() {
         UUID id = UUID.randomUUID();
 
-        assertThatThrownBy(() -> new Patient(id, null, "Maria Silva", BIRTH_DATE, null))
+        assertThatThrownBy(() -> new Patient(id, null, "Maria Silva", BIRTH_DATE, "83900000001"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Patient CNS is required");
     }
 
     @Test
     void shouldRejectMissingId() {
-        UUID id;
-
         assertThatThrownBy(() -> new Patient(null, VALID_CNS, "Maria Silva", BIRTH_DATE, "83900000002"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Patient ID is required");
@@ -67,10 +65,8 @@ public class PatientTest {
     }
 
     @Test
-    void shouldStripFullName() {
-        UUID id = UUID.randomUUID();
-        Patient original = new Patient(id, VALID_CNS, "Maria Silva Lima", BIRTH_DATE, "83900000001");
-        Patient updated = new Patient(id, VALID_CNS, "  Maria Silva Lima  ", BIRTH_DATE, "83900000002");
-        assertThat(updated.getFullName()).isEqualTo(original.getFullName());
+    void shoudlStripFullName() {
+        Patient patient = new Patient(UUID.randomUUID(), VALID_CNS, "  Maria Silva Lima  ", BIRTH_DATE, "83900000001");
+        assertThat(patient.getFullName()).isEqualTo("Maria Silva Lima");
     }
 }
